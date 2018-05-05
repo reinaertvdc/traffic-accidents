@@ -237,15 +237,19 @@ function addHeatMapControl(hm,divid){
   thediv.append(
     "<div style='margin:1.2em 0.5em 0.5em 0.5em'>"+
     "<text>Radius: </text><text id='radius_label'></text>"+
-    "<input style='width: 50%; right:1em; position:absolute' type ='range' max='300' min='1'"+
-    "step='1' name='points' id='slider_radius' value='30'></input> " +
+    "<input style='width: 50%; right:1em; position:absolute' type ='range' max='2000' min='200'"+
+    "step='100' name='points' id='slider_radius' value='1000'></input> " +
     "</div>");
   thediv.append(
     "<div style='margin:1.2em 0.5em 0.5em 0.5em'>"+
     "<text>Density of records<br>within the radius: </text><text id='radius_label'></text>"+
     "<div id='heatmap-legend' style='float: right'></div>"+
     "</div>"
-  );
+	);
+	
+	hm.setRadius(1000);
+	$('#radius_label').html('1000m');
+	WGL.render();
 
 
   WGL.addColorFilter(hm.id,'colorbrush');
