@@ -5,12 +5,7 @@ function init() {
 		
 		/*Load the data*/
 		var data = new DataLoader();
-		data.loadPosData("data/big/test10k.json");
-		//data.loadPosData("data/all.json");
-		//data.loadPosData("data/all_lines.json");
-		//data.loadPosData("data/xybirm5a.json");
-		//data.loadPosData("data/xyall3a1000k.json");	
-			
+		data.loadData();			
 	}
 
 var link_ids =["11",
