@@ -38,7 +38,7 @@ function DataLoader() {
 				municipalities[parseInt(v.code)] = {name: v.name, latitude: parseFloat(v.latitude), longitude: parseFloat(v.longitude)};
 			});
 
-			d3.csv('data/sampleTrafficAccidents.csv', function (error, trafficAccidents) {
+			d3.csv('data/trafficAccidents100.csv', function (error, trafficAccidents) {
 				trafficAccidents.forEach(function (val, i) {
 					pts[j++] = municipalities[val.municipality].longitude * 0.71 + 128;
 					pts[j++] = -municipalities[val.municipality].latitude * 1.12 + 142.83;
