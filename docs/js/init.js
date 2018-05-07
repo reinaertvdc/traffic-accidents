@@ -14,7 +14,7 @@ function visualize(data) {
 
 	// Adding heatmap, point map and polybrush interactions
 	var heatmap = WGL.addHeatMapDimension(data.pts, 'heatmap');
-	
+
 	//define radius function
 	WGL.addColorFilter('heatmap', 'colorbrush');
 	WGL.addPolyBrushFilter('heatmap', 'polybrush');
@@ -52,70 +52,42 @@ function visualize(data) {
 
 	const histogram = function (config) {
 		const id = 'ch' + (d.length + 1);
-		const xlabel = config.label;
+		Object.keys(data).forEach(function (property) {
+			if (data[property] === config.data) {
+				config.name = property;
+			}
+		});
 		const name = config.name + 'F';
 		const chart = new WGL.ChartDiv('right', id, config.label);
 		if (config.domain) {
+			config.type = 'ordinal';
 			chart.setDim(WGL.addOrdinalHistDimension(config));
 		} else {
+			config.type = 'linear';
+			config.max += 1;
 			config.num_bins = config.max - config.min;
 			WGL.addLinearHistDimension(config);
 		}
+		console.log(config);
 		WGL.addLinearFilter(config, config.max, name);
-		charts[config.name] = new WGL.ui.StackedBarChart(config, id, xlabel, name);
+		charts[config.name] = new WGL.ui.StackedBarChart(config, id, config.label, name);
 		d.push(config);
 	}
 
-	histogram({
-		data: data.year,
-		min: 1995,
-		max: 2017,
-		name: 'year',
-		type: 'linear',
-		label: 'Year'
-	});
+	histogram({ label: 'Year', data: data.year, min: 1995, max: 2016 });
+	histogram({ label: 'Month', data: data.month, domain: Ordinals.months });
+	histogram({ label: 'Day of the week', data: data.weekDay, domain: Ordinals.weekDays });
+	histogram({ label: 'Hour', data: data.hour, min: 0, max: 23 });
 
-	histogram({
-		data: data.month,
-		name: 'month',
-		type: 'ordinal',
-		label: 'Month',
-		domain: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-	});
+	histogram({ label: 'Total victims', data: data.numVictims, min: 0, max: 25 });
+	histogram({ label: 'Slightly injured', data: data.numSlightlyInjured, min: 0, max: 25 });
+	histogram({ label: 'Severely injured', data: data.numSeverelyInjured, min: 0, max: 5 });
+	histogram({ label: 'Mortally injured', data: data.numMortallyInjured, min: 0, max: 2 });
+	histogram({ label: 'Died within 24 hours', data: data.numDiedWithin24Hours, min: 0, max: 3 });
+	histogram({ label: 'Died within 30 days', data: data.numDiedWithin30Days, min: 0, max: 3 });
 
-	histogram({
-		data: data.weekDay,
-		name: 'weekDay',
-		type: 'ordinal',
-		label: 'Day of the week',
-		domain: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-	});
-
-	histogram({
-		data: data.hour,
-		min: 0,
-		max: 24,
-		name: 'hour',
-		type: 'linear',
-		label: 'Hour'
-	});
-
-	histogram({
-		data: data.age,
-		min: 0,
-		max: 114,
-		name: 'age',
-		type: 'linear',
-		label: 'Age'
-	});
-
-	histogram({
-		data: data.sex,
-		name: 'sex',
-		type: 'ordinal',
-		label: 'Sex',
-		domain: ['Male', 'Female']
-	});
+	histogram({ label: 'Age', data: data.age, min: -1, max: 114 });
+	histogram({ label: 'Sex', data: data.sex, domain: Ordinals.sex });
 
 	var pc = WGL.addParallelCoordinates('pc_chart', d);
 	WGL.addMultiDim(d);
