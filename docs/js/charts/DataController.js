@@ -68,7 +68,7 @@ const DataController = {
   },
 
   _loadDataset: (name, callback) => {
-    d3.csv('/data/' + name + '.csv', (error, data) => {
+    d3.csv('data/' + name + '.csv', (error, data) => {
       callback(data);
     })
   },
