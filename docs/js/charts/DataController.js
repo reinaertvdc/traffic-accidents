@@ -48,6 +48,8 @@ const DataController = {
     DataController._notifyObservers();
   },
 
+  
+
   getNumSelectedHours: () => {
     const f = self.filters;
     const totalHours = 21 * 365 * 24;
