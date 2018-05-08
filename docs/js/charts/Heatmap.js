@@ -1,4 +1,4 @@
-const ArrondissementsView = {
+const Heatmap = {
   update: () => {
     DataController.getData((data) => {
 
@@ -36,7 +36,7 @@ const ArrondissementsView = {
           days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
           times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "0"];
           
-          var svg = d3.select("#chart").append("svg")
+          var svg = d3.select("#heatmap").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -115,7 +115,7 @@ const ArrondissementsView = {
 }
 
 DataController.addObserver(() => {
-  ArrondissementsView.update();
+  Heatmap.update();
 });
 
-ArrondissementsView.update();
+Heatmap.update();

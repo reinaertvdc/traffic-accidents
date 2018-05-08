@@ -14,7 +14,8 @@
   <script src="libs/d3.v3.min.js"></script>
   <script src='js/charts/DataController.js'></script>
   <!-- <script src='js/charts/Filter.js'></script> -->
-  <script src='js/charts/ChartsView.js'></script>
+  <script src='js/charts/Heatmap.js'></script>
+  <script src='js/charts/Linechart.js'></script>
   <style>
       rect.bordered {
         stroke: #E6E6E6;
@@ -34,13 +35,33 @@
       text.axis-worktime {
         fill: #000;
       }
+
+      text {
+        font-family: arial;
+        font-size: 12px;
+      }
+      path { 
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+      }
+
+      .axis path,
+      .axis line {
+          fill: none;
+          stroke: grey;
+          stroke-width: 1;
+          shape-rendering: crispEdges;
+      }
+
     </style>
 </head>
 
 <body>
   <!-- <div id="arrondissements-view"></div> -->
   
-  <div id="chart"></div>
+  <div id="heatmap"></div>
+  <div id="linechart"></div>
 </body>
 
 </html>
