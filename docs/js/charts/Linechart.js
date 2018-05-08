@@ -29,7 +29,6 @@ const Linechart = {
       };
 
       var counts = getTotalAccidentsPerYear(data);
-      console.log(counts);
 
       var margin = {top: 30, right: 20, bottom: 30, left: 50},
       width = 1000 - margin.left - margin.right,
@@ -54,7 +53,7 @@ const Linechart = {
           .y(function(d) { return y(d.value); });
           
       // Adds the svg canvas
-      var svg = d3.select("body")
+      var svg = d3.select("#linechart")
           .append("svg")
               .attr("width", width + margin.left + margin.right)
               .attr("height", height + margin.top + margin.bottom)
