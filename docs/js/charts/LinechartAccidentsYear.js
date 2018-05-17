@@ -1,4 +1,4 @@
-const Linechart = {
+const LinechartAccidentsYear = {
   update: () => {
     DataController.getData((data) => {
 
@@ -45,7 +45,7 @@ const Linechart = {
           .orient("bottom").ticks(counts.length);
 
       var yAxis = d3.svg.axis().scale(y)
-          .orient("left").ticks(5);
+          .orient("left").ticks(12);
 
       // Define the line
       var valueline = d3.svg.line()
@@ -53,7 +53,7 @@ const Linechart = {
           .y(function(d) { return y(d.value); });
           
       // Adds the svg canvas
-      var svg = d3.select("#linechart")
+      var svg = d3.select("#linechartAccidentsYear")
           .append("svg")
               .attr("width", width + margin.left + margin.right)
               .attr("height", height + margin.top + margin.bottom)
@@ -71,6 +71,14 @@ const Linechart = {
           .attr("class", "line")
           .attr("d", valueline(counts));
 
+      svg.selectAll("dot")
+        .data(counts)
+      .enter().append("circle")
+        .attr("r", 3.5)
+        .attr("cx", function(d) { return x(d.year); })
+        .attr("cy", function(d) { return y(d.value); });
+
+
       // Add the X Axis
       svg.append("g")
           .attr("class", "x axis")
@@ -87,7 +95,7 @@ const Linechart = {
 }
 
 DataController.addObserver(() => {
-  Linechart.update();
+  LinechartAccidentsYear.update();
 });
 
-Linechart.update();
+LinechartAccidentsYear.update();
