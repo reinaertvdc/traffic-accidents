@@ -1,4 +1,8 @@
 const BarchartAreaType = {
+  init:() => {
+
+  },
+  
   update: () => {
     DataController.getData((data) => {
       const elementId = '#BarchartAreaType';

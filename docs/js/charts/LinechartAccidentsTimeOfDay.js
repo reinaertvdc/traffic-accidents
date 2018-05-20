@@ -1,4 +1,8 @@
 const LinechartAccidentsTimeOfDay = {
+  init: () => {
+
+  },
+  
   update: () => {
     DataController.getData((data) => {
       const elementId = '#LinechartAccidentsTimeOfDay';

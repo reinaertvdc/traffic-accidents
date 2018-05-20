@@ -1,4 +1,8 @@
 const BarchartCollisionType = {
+  init: () => {
+
+  },
+  
   update: () => {
     DataController.getData((data) => {
       const elementId = '#BarchartCollisionType';

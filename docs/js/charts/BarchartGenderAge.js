@@ -1,4 +1,8 @@
 const BarchartGenderAge = {
+  init: () => {
+
+  },
+  
   update: () => {
     DataController.getData((data) => {
       const elementId = '#BarchartGenderAge';

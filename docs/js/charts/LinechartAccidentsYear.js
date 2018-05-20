@@ -1,4 +1,8 @@
 const LinechartAccidentsYear = {
+  init: () => {
+
+  },
+  
   update: () => {
     DataController.getData((data) => {
       const elementId = '#LinechartAccidentsYear';

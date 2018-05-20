@@ -1,4 +1,8 @@
 const Heatmap = {
+  init: () => {
+
+  },
+  
   update: () => {
     DataController.getData((data) => {
       const elementId = '#Heatmap';

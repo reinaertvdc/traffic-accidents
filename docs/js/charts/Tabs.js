@@ -4,8 +4,20 @@ const Tabs = {
   init: function () {
     for (let i = 0; i < Tabs.all.length; i++) {
       const tab = Tabs.all[i];
-      
+
       $('.tabs').append('<div role="button" id="button-' + tab.getAttribute('id') + '" onclick="Tabs.set(\'' + tab.getAttribute('id') + '\')"><span>' + tab.getAttribute('name') + '</span></div>');
+
+      const children = $(tab).children();
+
+      for (let j = 0; j < children.length; j++) {
+        const chartId = children[j].getAttribute('id');
+
+        try {
+          eval(chartId).init();
+        } catch (error) {
+          console.warn('Chart ' + chartId + ' does not have an init method');
+        }
+      }
     }
 
     Tabs.set(Tabs.all[0].getAttribute('id'));
@@ -25,13 +37,12 @@ const Tabs = {
     DataController.clearObservers();
 
     for (let i = 0; i < charts.length; i++) {
-      const update = eval(charts[i].getAttribute('id')).update;
+      const chartId = charts[i].getAttribute('id');
+      const chart = eval(chartId);
 
       DataController.addObserver(() => {
-        update();
+        chart.update();
       });
-
-      update();
     }
   }
 }

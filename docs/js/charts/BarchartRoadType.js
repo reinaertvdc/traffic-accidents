@@ -1,4 +1,8 @@
 const BarchartRoadType = {
+  init: () => {
+
+  },
+  
   update: () => {
     DataController.getData((data) => {
       const elementId = '#BarchartRoadType';
