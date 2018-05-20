@@ -52,6 +52,7 @@ function visualize(data) {
 
 	const histogram = function (config) {
 		const id = 'ch' + (d.length + 1);
+		const checkboxId = 'checkbox-' + id;
 		Object.keys(data).forEach(function (property) {
 			if (data[property] === config.data) {
 				config.name = property;
@@ -68,10 +69,28 @@ function visualize(data) {
 			config.num_bins = config.max - config.min;
 			WGL.addLinearHistDimension(config);
 		}
-		console.log(config);
 		WGL.addLinearFilter(config, config.max, name);
 		charts[config.name] = new WGL.ui.StackedBarChart(config, id, config.label, name);
 		d.push(config);
+
+		$('#control').append('<label><input id="' + checkboxId + '" type="checkbox" checked="true"/>' + config.label + '</label>');
+		const checkbox = $('#' + checkboxId);
+
+		checkbox.click(() => {
+			if (checkbox.is(":checked")) {
+				
+			} else {
+				console.log(config.name);
+				WGL.cleanAll();
+				WGL.cleanDimension(config.name);
+			}
+		});
+
+		$('#' + checkboxId).click(function () {
+			let l = WGL.getDimension(this.name);
+			l.setVisible(this.checked);
+			WGL.render();
+		});		
 	}
 
 	histogram({ label: 'Year', data: data.year, min: 1995, max: 2016 });
@@ -124,18 +143,6 @@ function visualize(data) {
 	$("#slider_pc").on("input", function () {
 		//mapdim.render2(this.value);	
 		pc.reRender(this.value);
-	});
-
-	$("#points_visible").click(function () {
-		var l = WGL.getDimension(this.name);
-		l.setVisible(this.checked);
-		WGL.render();
-	});
-	$("#heatmap_visible").click(function () {
-		var l = WGL.getDimension(this.name);
-		l.setVisible(this.checked);
-		// heatmap.reRender();
-		WGL.render();
 	});
 
 	$("#pc_header").click(function () {

@@ -7,6 +7,10 @@ const DataController = {
     }
   },
 
+  clearObservers: () => {
+    self.observers.clear();
+  },
+
   passesFilter: (v) => {
     const f = self.filters;
     return (

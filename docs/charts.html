@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Charts</title>
+  <link rel="stylesheet" href="css/charts/styles.css">
   <link rel="stylesheet" href="libs/jquery-ui.min.css">
   <link rel="stylesheet" href="libs/jqrangeslider/classic-min.css">
   <script src="libs/jquery-1.9.1.min.js"></script>
@@ -13,7 +14,8 @@
   <script src="libs/jqrangeslider/jQRangeSlider-min.js"></script>
   <script src="libs/d3.v3.min.js"></script>
   <script src='js/charts/DataController.js'></script>
-  <!-- <script src='js/charts/Filter.js'></script> -->
+  <script src="js/charts/Tabs.js" defer></script>
+  <script src='js/charts/Filter.js' defer></script>
   <script src='js/charts/Heatmap.js'></script>
   <script src='js/charts/LinechartAccidentsYear.js'></script>
   <script src='js/charts/LinechartAccidentsTimeOfDay.js'></script>
@@ -21,59 +23,28 @@
   <script src='js/charts/BarchartAreaType.js'></script>
   <script src='js/charts/BarchartCollisionType.js'></script>
   <script src='js/charts/BarchartGenderAge.js'></script>
-  <style>
-      rect.bordered {
-        stroke: #E6E6E6;
-        stroke-width:2px;   
-      }
-
-      text.mono {
-        font-size: 9pt;
-        font-family: Consolas, courier;
-        fill: #aaa;
-      }
-
-      text.axis-workweek {
-        fill: #000;
-      }
-
-      text.axis-worktime {
-        fill: #000;
-      }
-
-      text {
-        font-family: arial;
-        font-size: 12px;
-      }
-      path { 
-        stroke: steelblue;
-        stroke-width: 2;
-        fill: none;
-      }
-
-
-      .axis path,
-      .axis line {
-        fill: none;
-       
-        shape-rendering: crispEdges;
-      }
-
-
-
-    </style>
 </head>
 
 <body>
-  <!-- <div id="arrondissements-view"></div> -->
-  
-  <div id="heatmap"></div>
-  <div id="linechartAccidentsTimeOfDay"></div>
-  <div id="linechartAccidentsYear"></div>
-  <div id="barchartRoadType"></div>
-  <div id="barchartAreaType"></div>
-  <div id="collisionType"></div>
-  <div id="ageGender"></div>
+  <div class="root">
+    <div class="tabs"></div>
+    <div class="sidebar"></div>
+    <div class="content">
+      <div id="tab-heatmap" name="Heatmaps">
+        <div id="Heatmap"></div>
+      </div>
+      <div id="tab-linecharts" name="Line charts">
+        <div id="LinechartAccidentsTimeOfDay"></div>
+        <div id="LinechartAccidentsYear"></div>
+      </div>
+      <div id="tab-barcharts" name="Bar charts">
+        <div id="BarchartRoadType"></div>
+        <div id="BarchartAreaType"></div>
+        <div id="BarchartCollisionType"></div>
+        <div id="BarchartGenderAge"></div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

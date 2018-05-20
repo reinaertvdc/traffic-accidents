@@ -1,0 +1,136 @@
+/* General styling */
+
+html {
+  font-family: sans-serif;
+}
+
+/* Page layout */
+
+body {
+  margin: 0;
+}
+
+.root {
+  display: grid;
+  grid-template-columns: auto 300px;
+  grid-template-rows: 50px auto;
+}
+
+.tabs,
+.sidebar,
+.content {
+  overflow: auto;
+}
+
+.tabs {
+  background-color: #3f51b5;
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+}
+
+.sidebar {
+  background-color: #212121;
+  color: white;
+  grid-column: 2 / 2;
+  grid-row: 1 / 2;
+  height: 100vh;
+}
+
+.content {
+  grid-column: 1 / 1;
+  grid-row: 2 / 2;
+  height: calc(100vh - 50px);
+}
+
+/* Tabs */
+
+.tabs {
+  display: flex;
+}
+
+.tabs>* {
+  color: white;
+  text-transform: uppercase;
+  align-items: center;
+  display: flex;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.tabs>*:hover {
+  background-color: #3949AB;
+}
+
+.tabs>*:active {
+  background-color: #303F9F;
+}
+
+.tabs>*[selected] {
+  background-color: #1A237E;
+}
+
+/* Sidebar */
+
+.sidebar>* {
+  margin: 1rem;
+}
+
+.sidebar>*>input {
+  vertical-align: bottom;
+}
+
+.sidebar>*>span+span {
+  margin-left: 0.5rem;
+}
+
+.sidebar>*>div {
+  margin: 0.5rem;
+}
+
+.ui-rangeSlider-disabled {
+  opacity: 0.5;
+}
+
+/* Content */
+
+.content>*:not([selected]) {
+  display: none;
+}
+
+/* Charts */
+
+rect.bordered {
+  stroke: #E6E6E6;
+  stroke-width: 2px;
+}
+
+text.mono {
+  font-size: 9pt;
+  font-family: Consolas, courier;
+  fill: #aaa;
+}
+
+text.axis-workweek {
+  fill: #000;
+}
+
+text.axis-worktime {
+  fill: #000;
+}
+
+text {
+  font-family: arial;
+  font-size: 12px;
+}
+
+path {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  shape-rendering: crispEdges;
+}

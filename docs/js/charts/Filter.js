@@ -1,14 +1,14 @@
 const Filter = {
-  create(label, parent, name, min, max, formatter) {
+  createSlider(label, parent, name, min, max, formatter) {
     const checkboxId = 'checkbox-' + name;
     const spanId = 'slider-span-' + name;
     const sliderId = 'slider-' + name;
 
-    const checkbox = $(checkboxId);
-    const span = $(spanId);
-    const slider = $(sliderId);
+    parent.append('<div><input id="' + checkboxId + '" type="checkbox"><span>' + label + ':</span><span id="' + spanId + '"></span><div id="' + sliderId + '" ></div></div>');
 
-    parent.append('<input id="' + checkboxId + '" type="checkbox"><span>' + label + ':</span><span id="' + spanId + '"></span><div id="' + sliderId + '" ></div>')
+    const checkbox = $('#' + checkboxId);
+    const span = $('#' + spanId);
+    const slider = $('#' + sliderId);
 
     if (!formatter) {
       formatter = (v) => {
@@ -66,7 +66,17 @@ const Filter = {
     });
 
     updateSpan();
-  }
+  },
 }
 
-Filter.create('Year', $('#arrondissements-view'), 'year', 1995, 2016);
+Filter.createSlider('Years', $('.sidebar'), 'years', 1995, 2016);
+Filter.createSlider('Months', $('.sidebar'), 'months', 1, 12, (v) => {
+  return [
+    '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ][v];
+});
+Filter.createSlider('Weekdays', $('.sidebar'), 'weekdays', 1, 7, (v) => {
+  return ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][v];
+});
+Filter.createSlider('Hours', $('.sidebar'), 'hours', 0, 23);
