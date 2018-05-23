@@ -1,4 +1,6 @@
 const Demo = {
+  init: () => {},
+
   update: () => {
     DataController.getData((data) => {
       const element = $('#Demo');

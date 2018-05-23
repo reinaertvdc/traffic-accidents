@@ -75,15 +75,15 @@ body {
   margin: 1rem;
 }
 
-.sidebar>*>input {
+.filter>input {
   vertical-align: bottom;
 }
 
-.sidebar>*>span+span {
+.filter>span+span {
   margin-left: 0.5rem;
 }
 
-.sidebar>*>div {
+.filter>div {
   margin: 0.5rem;
 }
 

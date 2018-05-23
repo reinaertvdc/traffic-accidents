@@ -4,7 +4,7 @@ const Filter = {
     const spanId = 'slider-span-' + name;
     const sliderId = 'slider-' + name;
 
-    parent.append('<div><input id="' + checkboxId + '" type="checkbox"><span>' + label + ':</span><span id="' + spanId + '"></span><div id="' + sliderId + '" ></div></div>');
+    parent.append('<div class="filter"><input id="' + checkboxId + '" type="checkbox"><span>' + label + ':</span><span id="' + spanId + '"></span><div id="' + sliderId + '" ></div></div>');
 
     const checkbox = $('#' + checkboxId);
     const span = $('#' + spanId);
@@ -69,14 +69,21 @@ const Filter = {
   },
 }
 
-Filter.createSlider('Years', $('.sidebar'), 'years', 1995, 2016);
-Filter.createSlider('Months', $('.sidebar'), 'months', 1, 12, (v) => {
+Filter.createSlider('Years', $('.sidebar-datetime'), 'years', 1995, 2016);
+Filter.createSlider('Months', $('.sidebar-datetime'), 'months', 1, 12, (v) => {
   return [
     '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
   ][v];
 });
-Filter.createSlider('Weekdays', $('.sidebar'), 'weekdays', 1, 7, (v) => {
+Filter.createSlider('Weekdays', $('.sidebar-datetime'), 'weekDays', 1, 7, (v) => {
   return ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][v];
 });
-Filter.createSlider('Hours', $('.sidebar'), 'hours', 0, 23);
+Filter.createSlider('Hours', $('.sidebar-datetime'), 'hours', 0, 23);
+
+Filter.createSlider('Total', $('.sidebar-victims'), 'numVictims', 0, 25);
+Filter.createSlider('Slightly injured', $('.sidebar-victims'), 'numSlightlyInjured', 0, 25);
+Filter.createSlider('Severely injured', $('.sidebar-victims'), 'numSeverelyInjured', 0, 5);
+Filter.createSlider('Mortally injured', $('.sidebar-victims'), 'numMortallyInjured', 0, 2);
+Filter.createSlider('Died within 24 hours', $('.sidebar-victims'), 'numDiedWithin24Hours', 0, 3);
+Filter.createSlider('Died within 30 days', $('.sidebar-victims'), 'numDiedWithin30Days', 0, 3);

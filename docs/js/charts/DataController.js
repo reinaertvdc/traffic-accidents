@@ -16,8 +16,14 @@ const DataController = {
     return (
       (!f.years.enabled || (v.year >= f.years.min && v.year <= f.years.max)) &&
       (!f.months.enabled || (v.month >= f.months.min && v.month <= f.months.max)) &&
-      (!f.weekdays.enabled || (v.week_day >= f.weekdays.min && v.week_day <= f.weekdays.max)) &&
-      (!f.hours.enabled || ((v.hour % 24) >= f.hours.min && (v.hour % 24) <= f.hours.max))
+      (!f.weekDays.enabled || (v.weekDay >= f.weekDays.min && v.weekDay <= f.weekDays.max)) &&
+      (!f.hours.enabled || (v.hour >= f.hours.min && v.hour <= f.hours.max)) &&
+      (!f.numVictims.enabled || (v.numVictims >= f.numVictims.min && v.numVictims <= f.numVictims.max)) &&
+      (!f.numSlightlyInjured.enabled || (v.numSlightlyInjured >= f.numSlightlyInjured.min && v.numSlightlyInjured <= f.numSlightlyInjured.max)) &&
+      (!f.numSeverelyInjured.enabled || (v.numSeverelyInjured >= f.numSeverelyInjured.min && v.numSeverelyInjured <= f.numSeverelyInjured.max)) &&
+      (!f.numMortallyInjured.enabled || (v.numMortallyInjured >= f.numMortallyInjured.min && v.numMortallyInjured <= f.numMortallyInjured.max)) &&
+      (!f.numDiedWithin24Hours.enabled || (v.numDiedWithin24Hours >= f.numDiedWithin24Hours.min && v.numDiedWithin24Hours <= f.numDiedWithin24Hours.max)) &&
+      (!f.numDiedWithin30Days.enabled || (v.numDiedWithin30Days >= f.numDiedWithin30Days.min && v.numDiedWithin30Days <= f.numDiedWithin30Days.max))
     );
   },
 
@@ -58,7 +64,7 @@ const DataController = {
     const f = self.filters;
     const totalHours = 21 * 365 * 24;
     const hoursFraction = f.hours.enabled ? ((f.hours.max % 24) - (f.hours.min % 24) + 1) / 24 : 1;
-    const daysFraction = f.weekdays.enabled ? (f.weekdays.max - f.weekdays.min + 1) / 7 : 1;
+    const daysFraction = f.weekDays.enabled ? (f.weekDays.max - f.weekDays.min + 1) / 7 : 1;
     const monthsFraction = f.months.enabled ? (f.months.max - f.months.min + 1) / 12 : 1;
 
     let numYears = f.years.max - f.years.min + 1;
@@ -126,7 +132,7 @@ if (self == null) {
         min: 1,
         max: 12,
       },
-      weekdays: {
+      weekDays: {
         enabled: false,
         min: 1,
         max: 7,
@@ -135,7 +141,37 @@ if (self == null) {
         enabled: false,
         min: 0,
         max: 23,
-      }
+      },
+      numVictims: {
+        enabled: false,
+        min: 0,
+        max: 25,
+      },
+      numSlightlyInjured: {
+        enabled: false,
+        min: 0,
+        max: 25,
+      },
+      numSeverelyInjured: {
+        enabled: false,
+        min: 0,
+        max: 5,
+      },
+      numMortallyInjured: {
+        enabled: false,
+        min: 0,
+        max: 2,
+      },
+      numDiedWithin24Hours: {
+        enabled: false,
+        min: 0,
+        max: 3,
+      },
+      numDiedWithin30Days: {
+        enabled: false,
+        min: 0,
+        max: 3,
+      },
     }
   };
 
