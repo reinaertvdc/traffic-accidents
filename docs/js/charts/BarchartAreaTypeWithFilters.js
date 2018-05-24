@@ -108,7 +108,11 @@ const BarchartAreaTypeWithFilters = {
         .style('font-weight', 'bold')
         .text("Value");
 
-      svg.select('.y').transition().duration(500).delay(1300).style('opacity', '1');
+      svg.select('.y')
+      // .transition()
+      // .duration(500
+      // ).delay(1300)
+      .style('opacity', '1');
 
       var slice = svg.selectAll(".slice")
         .data(accidents)
@@ -144,11 +148,11 @@ const BarchartAreaTypeWithFilters = {
         });
 
       slice.selectAll("rect")
-        .transition()
-        .delay(function (d) {
-          return Math.random() * 1000;
-        })
-        .duration(1000)
+      //   .transition()
+      //   .delay(function (d) {
+      //     return Math.random() * 1000;
+      //   })
+      //   .duration(1000)
         .attr("y", function (d) {
           return y(d.value);
         })
@@ -185,9 +189,13 @@ const BarchartAreaTypeWithFilters = {
           return d;
         });
 
-      legend.transition().duration(500).delay(function (d, i) {
-        return 1300 + 100 * i;
-      }).style("opacity", "1");
+      legend
+      // .transition()
+      // .duration(500)
+      // .delay(function (d, i) {
+      //   return 1300 + 100 * i;
+      // })
+      .style("opacity", "1");
 
     });
   },
