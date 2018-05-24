@@ -1,4 +1,6 @@
 const BarchartAreaTypeWithFilters = {
+  maxRange : 0,
+
   update: () => {
     const elementId = '#BarchartAreaTypeWithFilters';
     $(elementId).empty();
@@ -85,11 +87,24 @@ const BarchartAreaTypeWithFilters = {
 
       x0.domain(categoriesNames);
       x1.domain(rateNames).rangeRoundBands([0, x0.rangeBand()]);
-      y.domain([0, d3.max(accidents, function (categorie) {
+
+      var range = d3.max(accidents, function (categorie) {
         return d3.max(categorie.values, function (d) {
           return d.value;
         });
-      })]);
+      })
+
+      if(range > BarchartCollisionTypeWithFilters.maxRange){
+        BarchartCollisionTypeWithFilters.maxRange = range;
+      }
+
+      y.domain([0, BarchartCollisionTypeWithFilters.maxRange]);
+
+      // y.domain([0, d3.max(accidents, function (categorie) {
+      //   return d3.max(categorie.values, function (d) {
+      //     return d.value;
+      //   });
+      // })]);
 
       svg.append("g")
         .attr("class", "x axis")

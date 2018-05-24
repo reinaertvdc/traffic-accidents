@@ -1,4 +1,6 @@
 const BarchartRoadTypeWithFilters = {
+  maxRange : 0,
+  
   update: () => {
     const elementId = '#BarchartRoadTypeWithFilters';
     $(elementId).empty();
@@ -85,11 +87,17 @@ const BarchartRoadTypeWithFilters = {
 
       x0.domain(categoriesNames);
       x1.domain(rateNames).rangeRoundBands([0, x0.rangeBand()]);
-      y.domain([0, d3.max(accidents, function (categorie) {
+      var range = d3.max(accidents, function (categorie) {
         return d3.max(categorie.values, function (d) {
           return d.value;
         });
-      })]);
+      })
+
+      if(range > BarchartRoadTypeWithFilters.maxRange){
+        BarchartRoadTypeWithFilters.maxRange = range;
+      }
+
+      y.domain([0, BarchartRoadTypeWithFilters.maxRange]);
 
       svg.append("g")
         .attr("class", "x axis")
