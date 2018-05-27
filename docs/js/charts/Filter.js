@@ -81,9 +81,11 @@ Filter.createSlider('Weekdays', $('.sidebar-datetime'), 'weekDays', 1, 7, (v) =>
 });
 Filter.createSlider('Hours', $('.sidebar-datetime'), 'hours', 0, 23);
 
-Filter.createSlider('Total', $('.sidebar-victims'), 'numVictims', 0, 25);
-Filter.createSlider('Slightly injured', $('.sidebar-victims'), 'numSlightlyInjured', 0, 25);
-Filter.createSlider('Severely injured', $('.sidebar-victims'), 'numSeverelyInjured', 0, 5);
-Filter.createSlider('Mortally injured', $('.sidebar-victims'), 'numMortallyInjured', 0, 2);
+Filter.createSlider('Age', $('.sidebar-age'), 'age', 0, 120);
+
+Filter.createSlider('Total', $('.sidebar-victims'), 'numVictims', 0, 3);
+Filter.createSlider('Slightly injured', $('.sidebar-victims'), 'numSlightlyInjured', 0, 3);
+Filter.createSlider('Severely injured', $('.sidebar-victims'), 'numSeverelyInjured', 0, 3);
+Filter.createSlider('Mortally injured', $('.sidebar-victims'), 'numMortallyInjured', 0, 3);
 Filter.createSlider('Died within 24 hours', $('.sidebar-victims'), 'numDiedWithin24Hours', 0, 3);
 Filter.createSlider('Died within 30 days', $('.sidebar-victims'), 'numDiedWithin30Days', 0, 3);

@@ -1,36 +1,36 @@
-const Heatmap = {
-  init: () => {
+const HeatmapWithFilters = {
 
-  },
   
   update: () => {
-    DataController.getData((data) => {
-      const elementId = '#Heatmap';
-      $(elementId).empty();
+    const elementId = '#HeatmapWithFilters';
+    $(elementId).empty();
+    let gatherData = [];
+    let accidents = [];
+    var i = 0;
 
-      function getDayHourCount(data) {
-        let dayhourCount = [];
-        var i = 0;
-        for (var d = 1; d <= 7; d++) {
-          for (var h = 0; h <= 23; h++) {
-            dayhourCount[i] = {
-              "day": d,
-              "hour": h,
-              "value": data.trafficAccidents.filter(
-                function (val) {
-                  return val.weekDay === d && val.hour === h;
-                }
-              ).length
-            }
+    DataController.filteredForEach((entry) => {
+      gatherData[i] = entry;
+      i++;
 
-            i++;
+    }, () => {
+      var i = 0;
+      for (var d = 1; d <= 7; d++) {
+        for (var h = 0; h <= 23; h++) {
+          accidents[i] = {
+            "day": d,
+            "hour": h,
+            "value": gatherData.filter(
+              function (val) {
+                return val.weekDay === d && val.hour === h;
+              }
+            ).length
           }
+
+          i++;
         }
+      }
 
-        return dayhourCount;
-      };
 
-      var counts = getDayHourCount(data);
 
       var margin = {
           top: 50,
@@ -45,7 +45,7 @@ const Heatmap = {
         buckets = 60,
         colors = ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"], // alternatively colorbrewer.YlGnBu[9]
         days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-        times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "0"];
+        times = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
 
       var svg = d3.select(elementId).append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -87,13 +87,13 @@ const Heatmap = {
         });
 
       var colorScale = d3.scale.quantile()
-        .domain([0, buckets - 1, d3.max(counts, function (d) {
+        .domain([0, d3.max(accidents, function (d) {
           return d.value;
         })])
         .range(colors);
 
       var cards = svg.selectAll(".hour")
-        .data(counts, function (d) {
+        .data(accidents, function (d) {
           return d.day + ':' + d.hour;
         });
 
@@ -113,8 +113,7 @@ const Heatmap = {
         .attr("height", gridSize)
         .style("fill", colors[0]);
 
-      cards.transition().duration(1000)
-        .style("fill", function (d) {
+      cards.style("fill", function (d) {
           return colorScale(d.value);
         });
 
@@ -154,6 +153,7 @@ const Heatmap = {
         .attr("y", height + gridSize);
 
       legend.exit().remove();
+
     });
   }
 }

@@ -50,7 +50,7 @@ const BarchartCollisionTypeWithFilters = {
                 {
                   "type": "Sideways",
                   "value": gatherData[i][4]
-                },
+                }/*,
                 {
                   "type": "With a pedestrian",
                   "value": gatherData[i][5]
@@ -66,7 +66,7 @@ const BarchartCollisionTypeWithFilters = {
                 {
                   "type": "One driver, no obstacle",
                   "value": gatherData[i][8]
-                }
+                }*/
               ]
           }
           i++;

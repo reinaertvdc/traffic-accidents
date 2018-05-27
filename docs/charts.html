@@ -16,16 +16,17 @@
   <script src="js/charts/DataController.js"></script>
   <script src="js/charts/Tabs.js" defer></script>
   <script src="js/charts/Filter.js" defer></script>
-  <script src="js/charts/Heatmap.js"></script>
-  <script src="js/charts/LinechartAccidentsYear.js"></script>
-  <script src="js/charts/LinechartAccidentsTimeOfDay.js"></script>
+  <script src="js/charts/HeatmapWithFilters.js"></script>
+  <script src="js/charts/LinechartAccidentsYearWithFilters.js"></script>
+  <script src="js/charts/LinechartAccidentsTimeOfDayWithFilters.js"></script>
+
   <!-- <script src="js/charts/BarchartRoadType.js"></script> -->
   <script src="js/charts/BarchartRoadTypeWithFilters.js"></script>
   <!-- <script src="js/charts/BarchartAreaType.js"></script> -->
   <script src="js/charts/BarchartAreaTypeWithFilters.js"></script>
   <!-- <script src="js/charts/BarchartCollisionType.js"></script> -->
   <script src="js/charts/BarchartCollisionTypeWithFilters.js"></script>
-  <script src="js/charts/BarchartGenderAge.js"></script>
+
   <script src="js/charts/Demo.js"></script>
 </head>
 
@@ -36,17 +37,21 @@
       <div class="sidebar-datetime">
         <h2>Date and time</h2>
       </div>
+      <div class="sidebar-age">
+        <h2>Age and gender</h2>
+      </div>
       <div class="sidebar-victims">
         <h2>Number of victims</h2>
       </div>
     </div>
     <div class="content">
       <div id="tab-heatmap" name="Heatmaps">
-        <div id="Heatmap"></div>
+        <div id="HeatmapWithFilters"></div>
       </div>
       <div id="tab-linecharts" name="Line charts">
-        <div id="LinechartAccidentsTimeOfDay"></div>
-        <div id="LinechartAccidentsYear"></div>
+
+        <div id="LinechartAccidentsYearWithFilters"></div>
+        <div id="LinechartAccidentsTimeOfDayWithFilters"></div>
       </div>
       <div id="tab-barcharts" name="Bar charts">
         <!-- <div id="BarchartRoadType"></div> -->
@@ -55,7 +60,7 @@
         <div id="BarchartAreaTypeWithFilters"></div>
         <!-- <div id="BarchartCollisionType"></div> -->
         <div id="BarchartCollisionTypeWithFilters"></div>
-        <div id="BarchartGenderAge"></div>
+    
       </div>
       <div id="tab-demo" name="Demo">
         <div id="Demo"></div>
