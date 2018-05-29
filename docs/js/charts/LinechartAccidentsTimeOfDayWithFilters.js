@@ -55,13 +55,13 @@ const LinechartAccidentsTimeOfDayWithFilters = {
 
 
       var margin = {
-          top: 30,
-          right: 20,
-          bottom: 30,
-          left: 50
+        top: 100,
+        right: 20,
+        bottom: 150,
+        left: 100
         },
-        width = 900 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+        width = 1000 ,
+        height = 500;
 
 
 
@@ -94,6 +94,26 @@ const LinechartAccidentsTimeOfDayWithFilters = {
         .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+svg.append("text")
+    .attr("x", width / 2 )
+    .attr("y", 0)
+    .style("font-size", "24px")
+    .style("text-anchor", "middle")
+    .text("Traffic victims per time of day");
+
+svg.append("text")
+    .attr("x", width / 2 )
+    .attr("y",  height + 40)
+    .style("text-anchor", "middle")
+    .text("Time of day (hour)");
+
+        svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0-margin.left/2)
+    .attr("x",0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Number of victims");  
 
       // Scale the range of the data
       x.domain(d3.extent(weekdaysCounts, function (d) {

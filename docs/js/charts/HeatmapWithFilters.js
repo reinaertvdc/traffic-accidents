@@ -33,13 +33,13 @@ const HeatmapWithFilters = {
 
 
       var margin = {
-          top: 50,
-          right: 30,
-          bottom: 100,
-          left: 80
+        top: 100,
+        right: 20,
+        bottom: 150,
+        left: 100
         },
-        width = 960 - margin.left - margin.right,
-        height = 430 - margin.top - margin.bottom,
+        width = 960 ,
+        height = 430 ,
         gridSize = Math.floor(width / 24),
         legendElementWidth = gridSize * 2,
         buckets = 60,
@@ -64,11 +64,7 @@ const HeatmapWithFilters = {
           return i * gridSize;
         })
         .style("text-anchor", "end")
-        .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
-        .attr("class", function (d, i) {
-          return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis");
-        });
-
+        .attr("transform", "translate(-6," + gridSize / 1.5 + ")");
 
       var timeLabels = svg.selectAll(".timeLabel")
         .data(times)
@@ -81,10 +77,8 @@ const HeatmapWithFilters = {
         })
         .attr("y", 0)
         .style("text-anchor", "middle")
-        .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-        .attr("class", function (d, i) {
-          return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis");
-        });
+        .attr("transform", "translate(" + gridSize / 2 + ", -6)");
+        
 
       var colorScale = d3.scale.quantile()
         .domain([0, d3.max(accidents, function (d) {
@@ -151,6 +145,8 @@ const HeatmapWithFilters = {
           return legendElementWidth * i;
         })
         .attr("y", height + gridSize);
+
+        legend.append("text").text("Number of accidents scale").attr("y", height + gridSize).attr("x", legendElementWidth * 9);;
 
       legend.exit().remove();
 

@@ -74,13 +74,13 @@ const BarchartCollisionTypeWithFilters = {
       }
 
       var margin = {
-        top: 20,
+        top: 100,
         right: 20,
-        bottom: 30,
-        left: 40
+        bottom: 150,
+        left: 100
       },
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        width = 960 ,
+        height = 500 ;
 
       var x0 = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
@@ -146,6 +146,28 @@ const BarchartCollisionTypeWithFilters = {
         .style("text-anchor", "end")
         .style('font-weight', 'bold')
         .text("Value");
+
+
+      svg.append("text")
+      .attr("x", width / 2 )
+      .attr("y", 0)
+      .style("font-size", "24px")
+      .style("text-anchor", "middle")
+      .text("Traffic victims per collision type");
+
+      svg.append("text")
+      .attr("x", width / 2 )
+      .attr("y",  height + 40)
+      .style("text-anchor", "middle")
+      .text("Year");
+
+      svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0-margin.left/2)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Number of victims");  
 
       svg.select('.y')
       // .transition()

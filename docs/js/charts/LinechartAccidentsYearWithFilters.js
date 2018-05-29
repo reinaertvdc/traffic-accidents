@@ -35,13 +35,13 @@ const LinechartAccidentsYearWithFilters = {
       
 
       var margin = {
-          top: 30,
-          right: 20,
-          bottom: 30,
-          left: 50
+        top: 100,
+        right: 20,
+        bottom: 150,
+        left: 100
         },
-        width = 1000 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        width = 1000 ,
+        height = 500 ;
 
       // Set the ranges
       var x = d3.time.scale().range([0, width]);
@@ -63,6 +63,8 @@ const LinechartAccidentsYearWithFilters = {
           return y(d.value);
         });
 
+       
+
       // Adds the svg canvas
       var svg = d3.select(elementId)
         .append("svg")
@@ -71,6 +73,7 @@ const LinechartAccidentsYearWithFilters = {
         .append("g")
         .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
 
 
       // Scale the range of the data
@@ -115,6 +118,27 @@ const LinechartAccidentsYearWithFilters = {
       svg.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+
+      svg.append("text")
+      .attr("x", width / 2 )
+      .attr("y", 0)
+      .style("font-size", "24px")
+      .style("text-anchor", "middle")
+      .text("Total traffic victims per year");
+
+      svg.append("text")
+      .attr("x", width / 2 )
+      .attr("y",  height + 40)
+      .style("text-anchor", "middle")
+      .text("Year");
+
+        svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0-margin.left/2)
+    .attr("x",0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Number of victims");  
     });
   }
 }

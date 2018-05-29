@@ -67,6 +67,25 @@ const Filter = {
 
     updateSpan();
   },
+
+  createCheckbox(label, parent, name) {
+    const checkboxId = 'checkbox-' + name;
+
+    parent.append('<div class="filter"><input id="' + checkboxId + '" type="checkbox"><span>' + label + ':</span></div>');
+
+    const checkbox = $('#' + checkboxId);
+
+    checkbox.change(() => {
+      const enabled = checkbox.is(':checked');
+
+      const filters = DataController.getFilters();
+      filters[name].enabled = enabled;
+      DataController.setFilters(filters);
+
+    });
+
+
+  }
 }
 
 Filter.createSlider('Years', $('.sidebar-datetime'), 'years', 1995, 2016);
@@ -82,6 +101,7 @@ Filter.createSlider('Weekdays', $('.sidebar-datetime'), 'weekDays', 1, 7, (v) =>
 Filter.createSlider('Hours', $('.sidebar-datetime'), 'hours', 0, 23);
 
 Filter.createSlider('Age', $('.sidebar-age'), 'age', 0, 120);
+Filter.createCheckbox('Male', $('.sidebar-age'), 'sex');
 
 Filter.createSlider('Total', $('.sidebar-victims'), 'numVictims', 0, 3);
 Filter.createSlider('Slightly injured', $('.sidebar-victims'), 'numSlightlyInjured', 0, 3);
