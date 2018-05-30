@@ -12,7 +12,7 @@ body {
 
 .root {
   display: grid;
-  grid-template-columns: auto 300px;
+  grid-template-columns: auto 380px;
   grid-template-rows: 50px auto;
 }
 
@@ -79,6 +79,10 @@ body {
   vertical-align: bottom;
 }
 
+.filter>input:not(:checked)~span {
+  opacity: 0.5;
+}
+
 .filter>span+span {
   margin-left: 0.5rem;
 }
@@ -91,15 +95,24 @@ body {
   opacity: 0.5;
 }
 
-.filter>.dropdown>* {
+.filter>input~.filter-content {
+  height: auto;
+  overflow: hidden;
+}
+
+.filter>input:not(:checked)~.filter-content {
+  height: 0;
+}
+
+.filter>.filter-content>.dropdown>* {
   display: block;
 }
 
-.filter>.dropdown>*>[disabled]+span {
+.filter>.filter-content>.dropdown>*>[disabled]+span {
   opacity: 0.5;
 }
 
-.filter>.dropdown>*>:not(:checked)+span {
+.filter>.filter-content>.dropdown>*>:not(:checked)+span {
   opacity: 0.5;
 }
 

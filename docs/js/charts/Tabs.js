@@ -20,7 +20,7 @@ const Tabs = {
 
     setTimeout(() => {
       Tabs.set(Tabs.all[0].getAttribute('id'));
-    }, 100);
+    }, 200);
   },
 
   set: function (id) {

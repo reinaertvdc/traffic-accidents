@@ -1,6 +1,6 @@
 const Filter = {
   create(label, parent, name, filterId, checkboxId, spanId, callback) {
-    parent.append('<div id="' + filterId + '" class="filter"><input id="' + checkboxId + '" type="checkbox"><span>' + label + ':</span><span id="' + spanId + '"></span></div>');
+    parent.append('<div id="' + filterId + '" class="filter"><input id="' + checkboxId + '" type="checkbox"><span>' + label + ':</span><span id="' + spanId + '"></span><div class="filter-content"></div></div>');
 
     const span = $('#' + spanId);
     const checkbox = $('#' + checkboxId);
@@ -31,8 +31,9 @@ const Filter = {
     const filter = $('#' + filterId);
     const checkbox = $('#' + checkboxId);
     const span = $('#' + spanId);
+    const content = $('#' + filterId + '>.filter-content');
 
-    filter.append('<div id="' + sliderId + '" ></div>');
+    content.append('<div id="' + sliderId + '" ></div>');
 
     const slider = $('#' + sliderId);
 
@@ -104,8 +105,9 @@ const Filter = {
     const filter = $('#' + filterId);
     const checkbox = $('#' + checkboxId);
     const span = $('#' + spanId);
+    const content = $('#' + filterId + '>.filter-content');
 
-    filter.append('<div id="' + dropdownId + '" class="dropdown"></div>');
+    content.append('<div id="' + dropdownId + '" class="dropdown"></div>');
 
     const dropdown = $('#' + dropdownId);
 
