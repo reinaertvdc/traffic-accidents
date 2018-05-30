@@ -1,6 +1,9 @@
 const LinechartAccidentsTimeOfDayWithFilters = {
    maxRange : 0,
   update: () => {
+    var daysSelectedInYear = DataController.getNumSelectedDaysPerYear();
+    var amYearsSelected = DataController.getNumSelectedYears();
+
     const elementId = '#LinechartAccidentsTimeOfDayWithFilters';
     $(elementId).empty();
     let weekendCounts = [];
@@ -9,6 +12,8 @@ const LinechartAccidentsTimeOfDayWithFilters = {
     let gatherData = [];
     var i = 0;
 
+    console.log(daysSelectedInYear);
+    console.log(amYearsSelected);
 
     DataController.filteredForEach((entry) => {
       gatherData[i] = entry;
@@ -23,11 +28,11 @@ const LinechartAccidentsTimeOfDayWithFilters = {
           "value": gatherData.filter(
             function (val) {
             
-                return val.weekDay <= 5 && val.hour === h;
+                return (val.weekDay <= 5 && val.hour === h) ;
 
                 
             }
-          ).length
+          ).length / (daysSelectedInYear * amYearsSelected)
         }
         i++;
 
@@ -37,9 +42,9 @@ const LinechartAccidentsTimeOfDayWithFilters = {
           "hour": h,
           "value": gatherData.filter(
             function (val) {
-              return val.weekDay > 5 && val.hour === h;
+              return (val.weekDay > 5 && val.hour === h);
             }
-          ).length
+          ).length / (daysSelectedInYear * amYearsSelected)
         }
         j++;
 
@@ -113,23 +118,31 @@ svg.append("text")
     .attr("x",0 - (height / 2))
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .text("Number of victims");  
+    .text("Number of victims per day");  
 
       // Scale the range of the data
       x.domain(d3.extent(weekdaysCounts, function (d) {
         return d.hour;
       }));
 
+      var rangeWeekDays = 0;
+      var rangeWeekendDays = 0;
 
-      var range = d3.max(weekdaysCounts, function (d) {
+      var rangeWeekDays = d3.max(weekdaysCounts, function (d) {
           return d.value;
       });
+      var rangeWeekendDays = d3.max(weekendCounts, function (d) {
+        return d.value;
+      });
+
+      var range = Math.max(rangeWeekDays, rangeWeekendDays);
 
       if(range > LinechartAccidentsTimeOfDayWithFilters.maxRange){
         LinechartAccidentsTimeOfDayWithFilters.maxRange = range;
       }
 
-      y.domain([0, LinechartAccidentsTimeOfDayWithFilters.maxRange]);
+      // y.domain([0, LinechartAccidentsTimeOfDayWithFilters.maxRange]);
+      y.domain([0, range]);
 
 
       // Add the valueline path.
@@ -188,7 +201,7 @@ svg.append("text")
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
-        .text("weekedays");
+        .text("weekdays");
     });
   }
 }
