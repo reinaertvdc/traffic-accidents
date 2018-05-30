@@ -91,6 +91,18 @@ body {
   opacity: 0.5;
 }
 
+.filter>.dropdown>* {
+  display: block;
+}
+
+.filter>.dropdown>*>[disabled]+span {
+  opacity: 0.5;
+}
+
+.filter>.dropdown>*>input {
+  vertical-align: bottom;
+}
+
 /* Content */
 
 .content>*:not([selected]) {

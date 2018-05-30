@@ -14,13 +14,13 @@ const Tabs = {
 
         try {
           eval(chartId).init();
-        } catch (error) {
-          console.warn('Chart ' + chartId + ' does not have an init method');
-        }
+        } catch (error) {}
       }
     }
 
-    Tabs.set(Tabs.all[0].getAttribute('id'));
+    setTimeout(() => {
+      Tabs.set(Tabs.all[0].getAttribute('id'));
+    }, 100);
   },
 
   set: function (id) {

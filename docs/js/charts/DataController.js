@@ -13,12 +13,14 @@ const DataController = {
 
   passesFilter: (v) => {
     const f = self.filters;
+
     return (
       (!f.years.enabled || (v.year >= f.years.min && v.year <= f.years.max)) &&
       (!f.months.enabled || (v.month >= f.months.min && v.month <= f.months.max)) &&
       (!f.weekDays.enabled || (v.weekDay >= f.weekDays.min && v.weekDay <= f.weekDays.max)) &&
       (!f.hours.enabled || (v.hour >= f.hours.min && v.hour <= f.hours.max)) &&
       (!f.age.enabled || (v.age >= f.age.min && v.age <= f.age.max)) &&
+      (!f.sex.enabled || f.sex.values[(typeof v.sex === 'undefined' ? 0 : v.sex)]) &&
       (!f.numVictims.enabled || (v.numVictims >= f.numVictims.min && v.numVictims <= f.numVictims.max)) &&
       (!f.numSlightlyInjured.enabled || (v.numSlightlyInjured >= f.numSlightlyInjured.min && v.numSlightlyInjured <= f.numSlightlyInjured.max)) &&
       (!f.numSeverelyInjured.enabled || (v.numSeverelyInjured >= f.numSeverelyInjured.min && v.numSeverelyInjured <= f.numSeverelyInjured.max)) &&
@@ -147,6 +149,10 @@ if (self == null) {
         enabled: false,
         min: 0,
         max: 120,
+      },
+      sex: {
+        enabled: false,
+        values: [true, true, true]
       },
       numVictims: {
         enabled: false,
