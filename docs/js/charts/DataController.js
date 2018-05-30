@@ -19,8 +19,17 @@ const DataController = {
       (!f.months.enabled || (v.month >= f.months.min && v.month <= f.months.max)) &&
       (!f.weekDays.enabled || (v.weekDay >= f.weekDays.min && v.weekDay <= f.weekDays.max)) &&
       (!f.hours.enabled || (v.hour >= f.hours.min && v.hour <= f.hours.max)) &&
+
+      (!f.victimType.enabled || f.victimType.values[(typeof v.victimType === 'undefined' ? 0 : v.victimType)]) &&
+      (!f.roadUserType.enabled || f.roadUserType.values[(typeof v.roadUserType === 'undefined' ? 0 : v.roadUserType)]) &&
+      (!f.roadType.enabled || f.roadType.values[(typeof v.roadType === 'undefined' ? 0 : v.roadType)]) &&
+      (!f.lightConditions.enabled || f.lightConditions.values[(typeof v.lightConditions === 'undefined' ? 0 : v.lightConditions)]) &&
+      (!f.collisionType.enabled || f.collisionType.values[(typeof v.collisionType === 'undefined' ? 0 : v.collisionType)]) &&
+      (!f.areaType.enabled || f.areaType.values[(typeof v.areaType === 'undefined' ? 0 : v.areaType)]) &&
+
       (!f.age.enabled || (v.age >= f.age.min && v.age <= f.age.max)) &&
       (!f.sex.enabled || f.sex.values[(typeof v.sex === 'undefined' ? 0 : v.sex)]) &&
+
       (!f.numVictims.enabled || (v.numVictims >= f.numVictims.min && v.numVictims <= f.numVictims.max)) &&
       (!f.numSlightlyInjured.enabled || (v.numSlightlyInjured >= f.numSlightlyInjured.min && v.numSlightlyInjured <= f.numSlightlyInjured.max)) &&
       (!f.numSeverelyInjured.enabled || (v.numSeverelyInjured >= f.numSeverelyInjured.min && v.numSeverelyInjured <= f.numSeverelyInjured.max)) &&
@@ -145,6 +154,30 @@ if (self == null) {
         min: 0,
         max: 23,
       },
+      victimType: {
+        enabled: false,
+        values: [true, true, true, true],
+      },
+      roadUserType: {
+        enabled: false,
+        values: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true],
+      },
+      roadType: {
+        enabled: false,
+        values: [true, true, true],
+      },
+      lightConditions: {
+        enabled: false,
+        values: [true, true, true, true, true],
+      },
+      collisionType: {
+        enabled: false,
+        values: [true, true, true, true, true, true, true, true, true],
+      },
+      areaType: {
+        enabled: false,
+        values: [true, true, true],
+      },
       age: {
         enabled: false,
         min: 0,
@@ -152,7 +185,7 @@ if (self == null) {
       },
       sex: {
         enabled: false,
-        values: [true, true, true]
+        values: [true, true, true],
       },
       numVictims: {
         enabled: false,

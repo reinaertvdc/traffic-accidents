@@ -116,7 +116,7 @@ const Filter = {
     values.forEach((v, i) => {
       const valueCheckboxId = filterId + '-' + i;
 
-      dropdown.append('<span><input id="' + valueCheckboxId + '" type="checkbox"><span>' + v + '</span></span>');
+      dropdown.append('<span><input id="' + valueCheckboxId + '" type="checkbox"><span for="' + valueCheckboxId + '">' + v + '</span></span>');
 
       const valueCheckbox = $('#' + valueCheckboxId);
 
@@ -157,6 +157,52 @@ Filter.createSlider('Weekdays', $('.sidebar-datetime'), 'weekDays', 1, 7, (v) =>
   return ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][v];
 });
 Filter.createSlider('Hours', $('.sidebar-datetime'), 'hours', 0, 23);
+
+Filter.createDropdown('Victim type', $('.sidebar-circumstances'), 'victimType', ['Driver or pedestrian', 'Passenger', 'Other victim']);
+Filter.createDropdown('Road user type', $('.sidebar-circumstances'), 'roadUserType', [
+  'Passenger car',
+  'Car for double use',
+  'Minibus',
+  'Light truck',
+  'Camper van',
+  'Truck',
+  'Truck with trailer',
+  'Truck without trailer',
+  'Tractor',
+  'Bus',
+  'Trolleybus',
+  'Autocar',
+  'Motorcycle up to 400 cc',
+  'Motorcyble over 400 cc',
+  'Moped A (two-wheeled)',
+  'Moped B (two-wheeled)',
+  'Moped with 3 or 4 wheels',
+  'Bicycle',
+  'Carriage',
+  'Disabled person in wheelchair',
+  'Pedestrian pushing their moped/bicycle',
+  'Other pedestrian',
+  'Rider',
+  'Other road user',
+]);
+Filter.createDropdown('Road type', $('.sidebar-circumstances'), 'roadType', ['Highway', 'Regional, provincial or municipal road']);
+Filter.createDropdown('Light conditions', $('.sidebar-circumstances'), 'lightConditions', [
+  'In broad daylight',
+  'Dawn - dusk',
+  'Night, ignited public lighting',
+  'Night, no public lighting',
+]);
+Filter.createDropdown('Collision type', $('.sidebar-circumstances'), 'collisionType', [
+  'Chain collision(4 drivers or more)',
+  'Frontal collision(or when crossing)',
+  'From behind(or next to each other)',
+  'Sideways',
+  'With a pedestrian',
+  'Against an obstacle on the roadway',
+  'Against an obstacle outside the roadway',
+  'One driver, no obstacle',
+]);
+Filter.createDropdown('Area type', $('.sidebar-circumstances'), 'areaType', ['Within built - up area', 'Outside of built - up area']);
 
 Filter.createSlider('Age', $('.sidebar-demographics'), 'age', 0, 120);
 Filter.createDropdown('Sex', $('.sidebar-demographics'), 'sex', ['Male', 'Female']);
