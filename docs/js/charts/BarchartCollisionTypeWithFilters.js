@@ -2,6 +2,8 @@ const BarchartCollisionTypeWithFilters = {
   maxRange : 0,
 
   update: () => {
+    var daysSelectedInYear = DataController.getNumSelectedDaysPerYear();
+
     const elementId = '#BarchartCollisionTypeWithFilters';
     $(elementId).empty();
     let gatherData = [];
@@ -37,19 +39,19 @@ const BarchartCollisionTypeWithFilters = {
             "year": y,
               "values": [{
                   "type": "Chain collision (4 drivers or more)",
-                  "value": gatherData[i][1]
+                  "value": gatherData[i][1] / daysSelectedInYear
                 },
                 {
                   "type": "Frontal collision (or when crossing)",
-                  "value": gatherData[i][2]
+                  "value": gatherData[i][2] / daysSelectedInYear
                 },
                 {
                   "type": "From behind (or next to each other)",
-                  "value": gatherData[i][3]
+                  "value": gatherData[i][3] / daysSelectedInYear
                 },
                 {
                   "type": "Sideways",
-                  "value": gatherData[i][4]
+                  "value": gatherData[i][4] / daysSelectedInYear
                 }/*,
                 {
                   "type": "With a pedestrian",
@@ -128,7 +130,8 @@ const BarchartCollisionTypeWithFilters = {
         BarchartCollisionTypeWithFilters.maxRange = range;
       }
 
-      y.domain([0, BarchartCollisionTypeWithFilters.maxRange]);
+      // y.domain([0, BarchartCollisionTypeWithFilters.maxRange]);
+      y.domain([0, range]);
 
       svg.append("g")
         .attr("class", "x axis")
@@ -167,7 +170,7 @@ const BarchartCollisionTypeWithFilters = {
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Number of victims");  
+      .text("Number of victims per day");  
 
       svg.select('.y')
       // .transition()

@@ -2,6 +2,8 @@ const BarchartRoadTypeWithFilters = {
   maxRange : 0,
   
   update: () => {
+    var daysSelectedInYear = DataController.getNumSelectedDaysPerYear();
+
     const elementId = '#BarchartRoadTypeWithFilters';
     $(elementId).empty();
     let gatherData = [];
@@ -31,11 +33,11 @@ const BarchartRoadTypeWithFilters = {
             "year": y,
             "values": [{
               "type": "Highway",
-              "value": gatherData[index][1]
+              "value": gatherData[index][1] / daysSelectedInYear
             },
             {
               "type": "Regional, provincial or municipal road",
-              "value": gatherData[index][2]
+              "value": gatherData[index][2] / daysSelectedInYear
             }
             ]
           }
@@ -97,7 +99,7 @@ const BarchartRoadTypeWithFilters = {
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Number of victims");  
+      .text("Number of victims per day");  
 
 
       var categoriesNames = accidents.map(function (d) {
@@ -119,7 +121,8 @@ const BarchartRoadTypeWithFilters = {
         BarchartRoadTypeWithFilters.maxRange = range;
       }
 
-      y.domain([0, BarchartRoadTypeWithFilters.maxRange]);
+      // y.domain([0, BarchartRoadTypeWithFilters.maxRange]);
+      y.domain([0, range]);
 
       svg.append("g")
         .attr("class", "x axis")

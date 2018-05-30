@@ -2,6 +2,8 @@ const BarchartAreaTypeWithFilters = {
   maxRange : 0,
 
   update: () => {
+    var daysSelectedInYear = DataController.getNumSelectedDaysPerYear();
+
     const elementId = '#BarchartAreaTypeWithFilters';
     $(elementId).empty();
     let gatherData = [];
@@ -31,11 +33,11 @@ const BarchartAreaTypeWithFilters = {
             "year": y,
             "values": [{
               "type": "Within built-up area",
-              "value": gatherData[index][1]
+              "value": gatherData[index][1] / daysSelectedInYear
             },
             {
               "type": "Outside of built-up area",
-              "value": gatherData[index][2]
+              "value": gatherData[index][2] / daysSelectedInYear
             }
             ]
           }
@@ -97,8 +99,7 @@ const BarchartAreaTypeWithFilters = {
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Number of victims");  
-
+      .text("Number of victims per day");  
 
       var categoriesNames = accidents.map(function (d) {
         return d.year;
@@ -120,7 +121,8 @@ const BarchartAreaTypeWithFilters = {
         BarchartAreaTypeWithFilters.maxRange = range;
       }
 
-      y.domain([0, BarchartAreaTypeWithFilters.maxRange]);
+      // y.domain([0, BarchartAreaTypeWithFilters.maxRange]);
+      y.domain([0, range]);
 
       // y.domain([0, d3.max(accidents, function (categorie) {
       //   return d3.max(categorie.values, function (d) {

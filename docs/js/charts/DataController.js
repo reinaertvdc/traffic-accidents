@@ -70,7 +70,47 @@ const DataController = {
     DataController._notifyObservers();
   },
 
-  
+  getNumSelectedYears: () => {
+    const f = self.filters;
+    
+    if(f.years.max == f.years.min)
+      return 1;
+
+    numYears = f.years.max - f.years.min
+
+    var emptyYears = [1996, 2000, 2002, 2003, 2004];
+    emptyYears.forEach((year) => {
+      if (year >= f.years.min && year <= f.years.max) {
+        numYears--;
+      }
+    });
+
+    return numYears;
+  },
+
+  getNumSelectedDaysPerYear: () => {
+    const f = self.filters;
+    var selectedYears = f.years.max == f.years.min ? 1 : f.years.max - f.years.min;
+    const hoursFraction = f.hours.enabled ? ((f.hours.max % 24) - (f.hours.min % 24) + 1) / 24 : 1;
+    const daysFraction = f.weekDays.enabled ? (f.weekDays.max - f.weekDays.min + 1) / 7 : 1;
+    const monthsFraction = f.months.enabled ? (f.months.max - f.months.min + 1) / 12 : 1;
+    var yearsFraction = f.years.enabled ? (f.years.max - f.years.min) / 21 : 1;
+
+    var emptyYears = [1996, 2000, 2002, 2003, 2004];
+    emptyYears.forEach((year) => {
+      if (year >= f.years.min && year <= f.years.max) {
+        selectedYears--;
+      }
+    });
+
+    if(f.years.max == f.years.min)
+      yearsFraction = 1/21;
+      
+    const totalHours = selectedYears * 365 * 24;
+
+    selectedHours = hoursFraction * daysFraction * monthsFraction * yearsFraction * totalHours;
+    return selectedHours / (24 * selectedYears);
+  },
 
   getNumSelectedHours: () => {
     const f = self.filters;

@@ -7,7 +7,8 @@ const LinechartAccidentsYearWithFilters = {
     let accidents = [];
     var i = 0;
 
-
+    var amYearsSelected = DataController.getNumSelectedYears();
+    var daysSelectedInYear = DataController.getNumSelectedDaysPerYear();
     
     DataController.filteredForEach((entry) => {
       gatherData[i] = entry;
@@ -25,11 +26,13 @@ const LinechartAccidentsYearWithFilters = {
           if (value > 0) {
             accidents[i] = {
               "year": parseDate(y + ""),
-              "value": +value
+              "value": + value / daysSelectedInYear
+              // "value": +value
             }
             i++;
           }
       }
+            // console.log(accidents);
 
 
       
@@ -90,7 +93,8 @@ const LinechartAccidentsYearWithFilters = {
         LinechartAccidentsYearWithFilters.maxRange = range;
       }
 
-      y.domain([0, LinechartAccidentsYearWithFilters.maxRange]);
+      // y.domain([0, LinechartAccidentsYearWithFilters.maxRange]);
+      y.domain([0, range]);
 
       // Add the valueline path.
       svg.append("path")
@@ -138,7 +142,7 @@ const LinechartAccidentsYearWithFilters = {
     .attr("x",0 - (height / 2))
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .text("Number of victims");  
+    .text("Number of victims per day");  
     });
   }
 }
