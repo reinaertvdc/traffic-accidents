@@ -1,174 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>Flanders public transport</title>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="libs/tooltipster.bundle.min.css"/>
-<link rel="stylesheet" href="libs/tooltipster-sideTip-light.min.css"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Charts</title>
+  <link rel="stylesheet" href="css/charts/styles.css">
+  <link rel="stylesheet" href="libs/jquery-ui.min.css">
+  <link rel="stylesheet" href="libs/jqrangeslider/classic-min.css">
+  <script src="libs/jquery-1.9.1.min.js"></script>
+  <script src="libs/jquery-ui.min.js"></script>
+  <script src="libs/jqrangeslider/jquery.mousewheel.min.js"></script>
+  <script src="libs/jqrangeslider/jQRangeSlider-min.js"></script>
+  <script src="libs/d3.v3.min.js"></script>
+  <script src="js/charts/DataController.js"></script>
+  <script src="js/charts/Tabs.js" defer></script>
+  <script src="js/charts/Filter.js" defer></script>
+  <script src="js/charts/HeatmapWithFilters.js"></script>
+  <script src="js/charts/LinechartAccidentsYearWithFilters.js"></script>
+  <script src="js/charts/LinechartAccidentsTimeOfDayWithFilters.js"></script>
 
-<link rel="stylesheet" href="css/style.css"/>
-
-<script src="libs/OpenLayers.js"></script>
-<script src="libs/jquery-1.9.1.min.js"></script>
-<script src="libs/poly2tri.js"></script>
-
-<script src="libs/d3.v3.min.js"></script>
-<script src="libs/tooltipster.bundle.min.js"></script>
-
-<!-- Local configuration -->
-<script src="js/map.js"></script>
-<script src="js/DataLoader.js"></script>
-<script src="js/init.js"></script>
-
-<!-- WebGLayer -->
-<script src="src/WGL.js"></script>
-<script src="src/internal/utils.js"></script>
-<script src="src/internal/filtrutils.js"></script>
-<script src="src/internal/GLUtils.js"></script>
-<script src="src/internal/Manager.js"></script>
-<script src="src/internal/MapController.js"></script>
-<script src="src/internal/FloatRasterReader.js"></script>
-<script src="src/internal/Filter.js"></script>
-<script src="src/internal/MaxCalculator.js"></script>
-<script src="src/internal/FloatReaderHistogram.js"></script>
-
-<script src="src/dimension/ColorSchemes.js"></script>
-<script src="src/dimension/MapDimension.js"></script>
-<script src="src/dimension/HeatMapDimension.js"></script>
-<script src="src/dimension/HeatMapRenderer.js"></script>
-<script src="src/dimension/IluminationRenderer.js"></script>
-<script src="src/dimension/HistDimension.js"></script>
-<script src="src/dimension/ParallelCoordinates.js"></script>
-<script src="src/dimension/ParallelCoordinatesRenderer.js"></script>
-
-<script src="src/filter/LinearFilter.js"></script>
-<script src="src/filter/MapPolyFilter.js"></script>
-<script src="src/filter/ExtentFilter.js"></script>
-<script src="src/filter/MapColorFilter.js"></script>
-
-<script src="src/ui/StackedBarChart.js"></script>
-<script src="src/ui/HeatMapLegend.js"></script>
-<script src="src/ui/d3.svg.multibrush.js"></script>
-<script src="src/ui/ChartDiv.js"></script>
-
-
- <!-- 
-<script src="http://localhost:9999/js/webglayer/js/WGL.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/utils.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/filtrutils.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/GLUtils.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/Manager.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/MapDimension.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/MapController.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/StackedBarChart.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/FloatRasterReader.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/d3.svg.multibrush.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/Filter.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/HeatMapDimension.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/HeatMapRenderer.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/MaxCalculator.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/FloatReaderHistogram.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/HeatMapHistogram.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/HistDimension.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/LinearFilter.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/HeatMapLegend.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/MapPolyFilter.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/ExtentFilter.js"></script>      
-<script src="http://localhost:9999/js/webglayer/js/ParallelCoordinates.js"></script>
-<script src="http://localhost:9999/js/webglayer/js/MapColorFilter.js"></script>       
-<script src="http://localhost:9999/js/webglayer/js/ParallelCoordinatesRenderer.js"></script>    
- 
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/GLUtils.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/Dimension.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/Manager.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/OneDDimension.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/MapDimension.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/MapLineDimension.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/HistDimension.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/Dimension.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/MapController.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/StackedBarChart.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/FloatRasterReader.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/d3.svg.multibrush.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/Filter.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/LinearFilter.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/HeatMapDimension.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/WGL.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/HeatMapRenderer.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/MaxCalculator.js"></script> 
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/ExtentFilter.js"></script> 
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/FloatReaderHistogram.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/ParallelCoordinates.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/MapColorFilter.js"></script>       
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/ParallelCoordinatesRenderer.js"></script>    
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/MapPolyFilter.js"></script>
-<script src="http://home.zcu.cz/~jezekjan/webglayer_git/js/HeatMapLegend.js"></script>
- -->
-
-
-
+  <!-- <script src="js/charts/BarchartRoadType.js"></script> -->
+  <script src="js/charts/BarchartRoadTypeWithFilters.js"></script>
+  <!-- <script src="js/charts/BarchartAreaType.js"></script> -->
+  <script src="js/charts/BarchartAreaTypeWithFilters.js"></script>
+  <!-- <script src="js/charts/BarchartCollisionType.js"></script> -->
+  <script src="js/charts/BarchartCollisionTypeWithFilters.js"></script>
 </head>
-<body onload="init()">
 
-	<div id="map"></div>
-	
-	<div>
-		<div id ="pc" class ="pc_chart_parent_dark pc_background_dark" >
-
-			<div id = "pc_header" class='btn-minimize pc_background_dark pc_header_dark'  id=minPC >
-				<i id=butPC class='fa fa-chevron-down'></i> Parallel Coordinates</div>
-
-			<div class ="pc_chart_div pc_background_dark" ></div>
-			<div id ="pc_chart" class = "pc_chart_div">
-				<input class="slider_v" id="slider_pc" type="range"  name="points" min="1" max="5000"/>
-			</div>
-		</div>
-	</div>
-
-	<div id="right">
-				
-			<div id = "chart0">
-				<div id="control" class="control">
-				</div>
-			</div>
-			<div id = "chart1"></div>
-			<div id = "chart2"></div>
-			<div id = "chart3"></div>
-			<div id = "chart4"></div>
-			<div id = "chart5"></div>
-
-		</div>
-	
-			
-				 		
-	</div>
-	<div id="controls">
-		
-		<ul id="controlToggle">
-
-			<input type="radio" name="type" value="polygon" id="polygonToggle"
-				onclick="toggleControl(this);" />
-			<label class="selectionlabel" for="polygonToggle">sketch polygon</label>
-
-			<input type="radio" name="type" value="modify" id="createVertices"
-				onclick="toggleControl(this);" />
-			<label class="selectionlabel" for="createVertices">modify polygon</label>
-
-			<input type="radio" name="type" value="remove" id="removePolygon"
-				onclick="toggleControl(this);" />
-			<label class="selectionlabel" for="removePolygon">remove polygon</label>
-			
-		</ul>
-		
-		
-	</div>
-		
-		
-	</div>
-
+<body>
+  <div class="root">
+    <div class="tabs"></div>
+    <div class="sidebar">
+      <div class="sidebar-datetime">
+        <h2>Date and time</h2>
+      </div>
+      <div class="sidebar-circumstances">
+        <h2>Circumstances</h2>
+      </div>
+      <div class="sidebar-demographics">
+        <h2>Demographics</h2>
+      </div>
+      <div class="sidebar-victims">
+        <h2>Number of victims</h2>
+      </div>
+    </div>
+    <div class="content">
+      <div id="tab-map" name="Map">
+        <iframe id="Map" src="map.html"></iframe>
+      </div>
+      <div id="tab-heatmap" name="Heatmaps">
+        <div id="HeatmapWithFilters"></div>
+      </div>
+      <div id="tab-linecharts" name="Line charts">
+        <div id="LinechartAccidentsYearWithFilters">
+        </div>
+        <div id="LinechartAccidentsTimeOfDayWithFilters"></div>
+      </div>
+      <div id="tab-barcharts" name="Bar charts">
+        <div id="BarchartRoadTypeWithFilters"></div>
+        <div id="BarchartAreaTypeWithFilters"></div>
+        <div id="BarchartCollisionTypeWithFilters"></div>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
