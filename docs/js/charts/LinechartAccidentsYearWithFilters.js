@@ -94,7 +94,8 @@ const LinechartAccidentsYearWithFilters = {
       }
 
       // y.domain([0, LinechartAccidentsYearWithFilters.maxRange]);
-      y.domain([0, range]);
+      // y.domain([0, range]);
+      y.domain([0, 4]);
 
       // Add the valueline path.
       svg.append("path")

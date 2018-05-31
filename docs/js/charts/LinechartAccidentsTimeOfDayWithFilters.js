@@ -142,7 +142,8 @@ svg.append("text")
       }
 
       // y.domain([0, LinechartAccidentsTimeOfDayWithFilters.maxRange]);
-      y.domain([0, range]);
+      // y.domain([0, range]);
+      y.domain([0, 0.4]);
 
 
       // Add the valueline path.

@@ -131,7 +131,8 @@ const BarchartCollisionTypeWithFilters = {
       }
 
       // y.domain([0, BarchartCollisionTypeWithFilters.maxRange]);
-      y.domain([0, range]);
+      y.domain([0, 1.4]);
+      // y.domain([0, range]);
 
       svg.append("g")
         .attr("class", "x axis")

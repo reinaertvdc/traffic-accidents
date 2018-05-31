@@ -45,6 +45,8 @@ const BarchartRoadTypeWithFilters = {
         }
       }
 
+      console.log(daysSelectedInYear);
+
       var margin = {
         top: 100,
         right: 20,
@@ -122,7 +124,9 @@ const BarchartRoadTypeWithFilters = {
       }
 
       // y.domain([0, BarchartRoadTypeWithFilters.maxRange]);
-      y.domain([0, range]);
+      // y.domain([0, range]);
+      // y.domain([0, 35]);
+      y.domain([0, 5]);
 
       svg.append("g")
         .attr("class", "x axis")

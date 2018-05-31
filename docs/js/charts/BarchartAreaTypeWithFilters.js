@@ -122,7 +122,8 @@ const BarchartAreaTypeWithFilters = {
       }
 
       // y.domain([0, BarchartAreaTypeWithFilters.maxRange]);
-      y.domain([0, range]);
+      y.domain([0, 2]);
+      // y.domain([0, range]);
 
       // y.domain([0, d3.max(accidents, function (categorie) {
       //   return d3.max(categorie.values, function (d) {
