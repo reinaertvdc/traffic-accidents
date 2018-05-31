@@ -52,7 +52,7 @@ function visualize(data) {
 
 	const histogram = function (config) {
 		const id = 'ch' + (d.length + 1);
-		const checkboxId = 'checkbox-' + id;
+		//const checkboxId = 'checkbox-' + id;
 		Object.keys(data).forEach(function (property) {
 			if (data[property] === config.data) {
 				config.name = property;
@@ -73,24 +73,24 @@ function visualize(data) {
 		charts[config.name] = new WGL.ui.StackedBarChart(config, id, config.label, name);
 		d.push(config);
 
-		$('#control').append('<label><input id="' + checkboxId + '" type="checkbox" checked="true"/>' + config.label + '</label>');
-		const checkbox = $('#' + checkboxId);
+		//$('#control').append('<label><input id="' + checkboxId + '" type="checkbox" checked="true"/>' + config.label + '</label>');
+		//const checkbox = $('#' + checkboxId);
 
-		checkbox.click(() => {
-			if (checkbox.is(":checked")) {
+		// checkbox.click(() => {
+		// 	if (checkbox.is(":checked")) {
 				
-			} else {
-				console.log(config.name);
-				WGL.cleanAll();
-				WGL.cleanDimension(config.name);
-			}
-		});
+		// 	} else {
+		// 		console.log(config.name);
+		// 		WGL.cleanAll();
+		// 		WGL.cleanDimension(config.name);
+		// 	}
+		// });
 
-		$('#' + checkboxId).click(function () {
-			let l = WGL.getDimension(this.name);
-			l.setVisible(this.checked);
-			WGL.render();
-		});		
+		// $('#' + checkboxId).click(function () {
+		// 	let l = WGL.getDimension(this.name);
+		// 	l.setVisible(this.checked);
+		// 	WGL.render();
+		// });		
 	}
 
 	histogram({ label: 'Year', data: data.year, min: 1995, max: 2016 });
@@ -99,11 +99,11 @@ function visualize(data) {
 	histogram({ label: 'Hour', data: data.hour, min: 0, max: 23 });
 
 	histogram({ label: 'Total victims', data: data.numVictims, min: 0, max: 25 });
-	histogram({ label: 'Slightly injured', data: data.numSlightlyInjured, min: 0, max: 25 });
-	histogram({ label: 'Severely injured', data: data.numSeverelyInjured, min: 0, max: 5 });
-	histogram({ label: 'Mortally injured', data: data.numMortallyInjured, min: 0, max: 2 });
-	histogram({ label: 'Died within 24 hours', data: data.numDiedWithin24Hours, min: 0, max: 3 });
-	histogram({ label: 'Died within 30 days', data: data.numDiedWithin30Days, min: 0, max: 3 });
+	//histogram({ label: 'Slightly injured', data: data.numSlightlyInjured, min: 0, max: 25 });
+	//histogram({ label: 'Severely injured', data: data.numSeverelyInjured, min: 0, max: 5 });
+	//histogram({ label: 'Mortally injured', data: data.numMortallyInjured, min: 0, max: 2 });
+	//histogram({ label: 'Died within 24 hours', data: data.numDiedWithin24Hours, min: 0, max: 3 });
+	//histogram({ label: 'Died within 30 days', data: data.numDiedWithin30Days, min: 0, max: 3 });
 
 	histogram({ label: 'Age', data: data.age, min: -1, max: 114 });
 	histogram({ label: 'Sex', data: data.sex, domain: Ordinals.sex });

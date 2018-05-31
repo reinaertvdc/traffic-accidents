@@ -29,6 +29,12 @@ const Tabs = {
       $('#' + Tabs.all[i].getAttribute('id')).attr('selected', false);
     }
 
+    if (id === 'tab-map') {
+      $('.root').addClass('map-active');
+    } else {
+      $('.root').removeClass('map-active');
+    }
+
     $('#button-' + id).attr('selected', true);
     $('#' + id).attr('selected', true);
 
@@ -41,7 +47,9 @@ const Tabs = {
       const chart = eval(chartId);
 
       DataController.addObserver(() => {
-        chart.update();
+        try {
+          chart.update();
+        } catch (error) {}
       });
     }
   }

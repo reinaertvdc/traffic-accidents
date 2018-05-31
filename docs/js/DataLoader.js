@@ -10,15 +10,15 @@ function DataLoader() {
 			pts: [],
 			year: [],
 			month: [],
-			monthDay: [],
+			//monthDay: [],
 			weekDay: [],
 			hour: [],
 			numVictims: [],
-			numSlightlyInjured: [],
-			numSeverelyInjured: [],
-			numMortallyInjured: [],
-			numDiedWithin24Hours: [],
-			numDiedWithin30Days: [],
+			//numSlightlyInjured: [],
+			//numSeverelyInjured: [],
+			//numMortallyInjured: [],
+			//numDiedWithin24Hours: [],
+			//numDiedWithin30Days: [],
 			age: [],
 			sex: []
 		}
@@ -43,15 +43,15 @@ function DataLoader() {
 
 					arrays.year[i] = val.year;
 					arrays.month[i] = Ordinals.months[parseInt(val.month) - 1];
-					arrays.monthDay[i] = val.monthDay;
+					//arrays.monthDay[i] = val.monthDay;
 					arrays.weekDay[i] = Ordinals.weekDays[parseInt(val.weekDay) - 1];
 					arrays.hour[i] = val.hour;
 					arrays.numVictims[i] = val.numVictims;
-					arrays.numSlightlyInjured[i] = val.numSlightlyInjured;
-					arrays.numSeverelyInjured[i] = val.numSeverelyInjured;
-					arrays.numMortallyInjured[i] = val.numMortallyInjured;
-					arrays.numDiedWithin24Hours[i] = val.numDiedWithin24Hours;
-					arrays.numDiedWithin30Days[i] = val.numDiedWithin30Days;
+					//arrays.numSlightlyInjured[i] = val.numSlightlyInjured;
+					//arrays.numSeverelyInjured[i] = val.numSeverelyInjured;
+					//arrays.numMortallyInjured[i] = val.numMortallyInjured;
+					//arrays.numDiedWithin24Hours[i] = val.numDiedWithin24Hours;
+					//arrays.numDiedWithin30Days[i] = val.numDiedWithin30Days;
 					arrays.age[i] = val.age.length ? val.age : '-1';
 					arrays.sex[i] = parseInt(val.sex) in Ordinals.sex ? Ordinals.sex[parseInt(val.sex)] : Ordinals.sex[0];
 				});
