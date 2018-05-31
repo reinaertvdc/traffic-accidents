@@ -45,7 +45,7 @@ const BarchartRoadTypeWithFilters = {
         }
       }
 
-      console.log(daysSelectedInYear);
+      // console.log(daysSelectedInYear);
 
       var margin = {
         top: 100,

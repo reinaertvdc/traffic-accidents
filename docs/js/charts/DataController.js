@@ -90,27 +90,15 @@ const DataController = {
 
   getNumSelectedDaysPerYear: () => {
     const f = self.filters;
-    var selectedYears = f.years.max == f.years.min ? 1 : f.years.max - f.years.min;
     const hoursFraction = f.hours.enabled ? ((f.hours.max % 24) - (f.hours.min % 24) + 1) / 24 : 1;
     const daysFraction = f.weekDays.enabled ? (f.weekDays.max - f.weekDays.min + 1) / 7 : 1;
     const monthsFraction = f.months.enabled ? (f.months.max - f.months.min + 1) / 12 : 1;
-
-    var emptyYears = [1996, 2000, 2002, 2003, 2004];
-    emptyYears.forEach((year) => {
-      if (year >= f.years.min && year <= f.years.max) {
-        selectedYears--;
-        selectedYears = Math.max(selectedYears, 1)
-      }
-    });
       
-    const totalHours = selectedYears * 365 * 24;
-    var yearsFraction = f.years.enabled ? (f.years.max - f.years.min) / selectedYears : 1;
+    const totalHours = 365 * 24; 
 
-    if(f.years.max == f.years.min)
-      yearsFraction = 1/selectedYears;
+    selectedHours = hoursFraction * daysFraction * monthsFraction * totalHours;
 
-    selectedHours = hoursFraction * daysFraction * monthsFraction * yearsFraction * totalHours;
-    return selectedHours / (24 * selectedYears);
+    return selectedHours / (24);
   },
 
   getNumSelectedHours: () => {
